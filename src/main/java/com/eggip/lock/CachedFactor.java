@@ -6,7 +6,6 @@ import java.util.concurrent.FutureTask;
 
 public class CachedFactor {
 
-    FutureTask
 
     private volatile OneValueCache cache;  // 9 [3, 3]
 
