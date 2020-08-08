@@ -2,8 +2,11 @@ package com.eggip.lock;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.FutureTask;
 
 public class CachedFactor {
+
+    FutureTask
 
     private volatile OneValueCache cache;  // 9 [3, 3]
 
