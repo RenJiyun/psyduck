@@ -1,0 +1,15 @@
+expr = object | array;
+object = '{' members '}';
+members = member | member, members;
+member = string : value;
+value = string | number | true | false | null | object | array;
+array = '[' objects ']';
+objects = object | object, objects;
+
+
+
+suanshu_expr = number | add_expr | mul_expr;
+add_expr = suanshu_expr + suanshu_expr;
+mul_expr = number * number;
+
+14 * 5 + 5 * 6 + 7
