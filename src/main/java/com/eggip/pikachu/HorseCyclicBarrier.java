@@ -24,6 +24,8 @@ public class HorseCyclicBarrier {
       }
         @Override
         public void run() {
+            while(true) {
+
             try {
                 Thread.sleep(2000);  // 跑的时间
                 System.out.println("马儿"+id+"号跑到终点了");
@@ -33,15 +35,15 @@ public class HorseCyclicBarrier {
             } catch (BrokenBarrierException e) {
                 e.printStackTrace();
             }
+        }
+
 
         }
     }
     public  static void main(String[] args) throws BrokenBarrierException, InterruptedException {
-          while (true){
               for ( int i=0;i<3;i++){
                   HorseRace horseRace=new HorseRace(i);
                   Executors.newFixedThreadPool(1).execute(horseRace);
               }
-          }
     }
 }
