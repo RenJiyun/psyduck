@@ -1,5 +1,7 @@
 package com.eggip.pikachu;
 
+import com.eggip.lock.BarrierDemo;
+
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.Executors;
@@ -39,8 +41,9 @@ public class HorseCyclicBarrier {
     public  static void main(String[] args) throws BrokenBarrierException, InterruptedException {
           while (true){
               for ( int i=0;i<3;i++){
-                  HorseRace horseRace=new HorseRace(i);
-                  Executors.newFixedThreadPool(1).execute(horseRace);
+             //     HorseRace horseRace=new HorseRace(i);
+                  new Thread(new HorseRace(i)).start();
+               //   Executors.newFixedThreadPool(1).execute(horseRace);
               }
           }
     }
