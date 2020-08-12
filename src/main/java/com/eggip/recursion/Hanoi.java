@@ -1,4 +1,4 @@
-package com.eggip.recursion.hanoi;
+package com.eggip.recursion;
 
 import java.util.Arrays;
 
