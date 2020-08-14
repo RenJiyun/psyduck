@@ -28,21 +28,21 @@ public class CompletionServiceDemo {
 
             }));
         }
-        // futureList2(futureList,n);
+        futureList2(futureList,n);
 
-        while (true && futureList.size() != 0) {
-            List<Future<Integer>> tempFutureList = new ArrayList<>();
-            for (Future<Integer> future : futureList) {
-                try {
-                    System.out.println(future.get(0, TimeUnit.MICROSECONDS));
-                } catch (Throwable t) {
-                    tempFutureList.add(future);
-                }
-            }
-            futureList = tempFutureList;
-        }
+        // while (true && futureList.size() != 0) {
+        //     List<Future<Integer>> tempFutureList = new ArrayList<>();
+        //     for (Future<Integer> future : futureList) {
+        //         try {
+        //             System.out.println(future.get(0, TimeUnit.MICROSECONDS));
+        //         } catch (Throwable t) {
+        //             tempFutureList.add(future);
+        //         }
+        //     }
+        //     futureList = tempFutureList;
+        // }
 
-        System.out.println("=======");
+        // System.out.println("=======");
 
 
     }
@@ -57,7 +57,7 @@ public class CompletionServiceDemo {
             }
         }
         if(!CollectionUtils.isEmpty(futureList1)){
-            futureList2(futureList1,futureList1.size());
+            futureList2(futureList1,futureList1.size());    // java8仿佛没有尾递归优化
         }
 
     }
