@@ -5,6 +5,7 @@ import org.springframework.util.CollectionUtils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
+import java.util.concurrent.CompletionService;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -21,13 +22,28 @@ public class CompletionServiceDemo {
                 @Override
                 public Integer call() throws Exception {
                     // 很久才返回
-                    Thread.sleep(200);
+                    Thread.sleep(1000);
                     return 0;
                 }
 
             }));
         }
-        futureList2(futureList,n);
+        // futureList2(futureList,n);
+
+        while (true && futureList.size() != 0) {
+            List<Future<Integer>> tempFutureList = new ArrayList<>();
+            for (Future<Integer> future : futureList) {
+                try {
+                    System.out.println(future.get(0, TimeUnit.MICROSECONDS));
+                } catch (Throwable t) {
+                    tempFutureList.add(future);
+                }
+            }
+            futureList = tempFutureList;
+        }
+
+        System.out.println("=======");
+
 
     }
     private static void futureList2(List<Future<Integer>> futureList,int n){
