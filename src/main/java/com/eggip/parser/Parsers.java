@@ -31,7 +31,7 @@ public class Parsers {
                 try {
                     Tuple2<T, String> p1Result = p1.parse(s);
                     return Tuple.of(Either.left(p1Result._1), p1Result._2);
-                } catch (RuntimeException e) {
+                } catch (ParseException e) {
                     Tuple2<R, String> p2Result = p2.parse(s);
                     return Tuple.of(Either.right(p2Result._1), p2Result._2);
                 }

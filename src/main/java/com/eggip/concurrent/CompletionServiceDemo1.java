@@ -26,6 +26,8 @@ public class CompletionServiceDemo1 {
             });
         }
 
+
+
         // completionService.map(e -> doSomething(e));
 
         for (int i = 0; i < n; i++) {
