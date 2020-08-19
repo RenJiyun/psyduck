@@ -1,6 +1,17 @@
 package com.eggip.dragonair;
 
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
 public class Parsers {
+
+    public static final Parser identity = new Parser() {
+        @Override
+        public ParseResult parse(String s) {
+            return new ParseResult("", s);
+        }
+    };
+
 
     public static Parser concat(Parser parser1, Parser parser2) {
         return new Parser() {
@@ -31,7 +42,17 @@ public class Parsers {
     }
 
 
-    public static Parser str(String s) {
+    public static Parser strV2(String s) {
+        return IntStream.range(0, s.length()).mapToObj(s::charAt).map(c -> (Parser) new CharParser(c)).reduce(identity, Parsers::concat);
+    }
+
+
+    public static Parser choose(String s) {
+        return null;
+    }
+
+
+    public static Parser strV1(String s) {
         return new Parser() {
             @Override
             public ParseResult parse(String s1) {
@@ -39,22 +60,22 @@ public class Parsers {
                 for (int i = 0; i < s.length(); i++) {
                     if (i + 1 < s.length()) {
                         Parser parser = concat(new CharParser(s.charAt(i)), new CharParser(s.charAt(i + 1)));
-                        ParseResult  result2 = parser.parse(result.getRest());
-                        result=new ParseResult(result.getMatched()+result2.getMatched(), result2.getRest());
+                        ParseResult result2 = parser.parse(result.getRest());
+                        result = new ParseResult(result.getMatched() + result2.getMatched(), result2.getRest());
 
                     } else {
-                        ParseResult result1 =new CharParser(s.charAt(i)).parse(result.getRest());
-                        result=new ParseResult(result.getMatched()+result1.getMatched(),result1.getRest());
+                        ParseResult result1 = new CharParser(s.charAt(i)).parse(result.getRest());
+                        result = new ParseResult(result.getMatched() + result1.getMatched(), result1.getRest());
                     }
                 }
-                return  result;
+                return result;
             }
         };
     }
 
 
     public static void main(String[] args) {
-        Parser parser = str("hellod");
-        System.out.println(parser.parse("hellodfads"));
+        Parser parser = choose("abc");
+        System.out.println(parser.parse("abc"));
     }
 }
