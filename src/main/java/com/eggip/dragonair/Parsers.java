@@ -1,5 +1,6 @@
 package com.eggip.dragonair;
 
+import java.util.function.Function;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -23,7 +24,6 @@ public class Parsers {
             }
         };
     }
-
 
     public static Parser choose(Parser parser1, Parser parser2) {
         return new Parser() {
@@ -74,8 +74,23 @@ public class Parsers {
     }
 
 
+    public static <T, U> Parser<U> map(Parser<T> parser, Function<T, U> f) {
+        return new Parser() {
+            @Override
+            public ParseResult<U> parse(String s) {
+                ParseResult<T> result = parser.parse(s);
+                if (result.getMatched().equals("")) {
+                    return ParseResult.error(s);
+                } else {
+                    return ParseResult.success(f.apply(result.getMatched()), result.getRest());
+                }
+            }
+        };
+    }
+
+
     public static void main(String[] args) {
-        Parser parser = choose("abc");
-        System.out.println(parser.parse("cbc"));
+        Parser parser = map(strV2("true"), s -> Boolean.valueOf(s));
+        System.out.println(parser.parse("truedafgdsa").getMatched() || false);
     }
 }
