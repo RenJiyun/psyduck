@@ -15,11 +15,11 @@ public class Parsers {
 
     public static Parser concat(Parser parser1, Parser parser2) {
         return new Parser() {
-            @Override
-            public ParseResult parse(String s) {
-                ParseResult result1 = parser1.parse(s);
-                ParseResult result2 = parser2.parse(result1.getRest());
-                return new ParseResult(result1.getMatched() + result2.getMatched(), result2.getRest());
+                    @Override
+                    public ParseResult parse(String s) {
+                        ParseResult result1 = parser1.parse(s);
+                        ParseResult result2 = parser2.parse(result1.getRest());
+                        return new ParseResult(result1.getMatched() + result2.getMatched(), result2.getRest());
             }
         };
     }
@@ -48,7 +48,7 @@ public class Parsers {
 
 
     public static Parser choose(String s) {
-        return null;
+        return IntStream.range(0, s.length()).mapToObj(s::charAt).map(c -> (Parser) new CharParser(c)).reduce(identity, Parsers::choose);
     }
 
 
@@ -76,6 +76,6 @@ public class Parsers {
 
     public static void main(String[] args) {
         Parser parser = choose("abc");
-        System.out.println(parser.parse("abc"));
+        System.out.println(parser.parse("cbc"));
     }
 }
