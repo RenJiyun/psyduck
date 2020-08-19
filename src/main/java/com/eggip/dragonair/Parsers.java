@@ -31,10 +31,13 @@ public class Parsers {
     }
 
 
+    public static Parser str(String s) {
+        return null;
+    }
+
+
     public static void main(String[] args) {
-        Parser parser_a = new CharParser('a');
-        Parser parser_b = new CharParser('b');
-        Parser parser_ab = choose(parser_a, parser_b);
-        System.out.println(parser_ab.parse("barfds"));
+        Parser parser = str("hello");
+        System.out.println(parser.parse("hellodfads"));
     }
 }
