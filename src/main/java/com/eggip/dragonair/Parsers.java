@@ -32,12 +32,29 @@ public class Parsers {
 
 
     public static Parser str(String s) {
-        return null;
+        return new Parser() {
+            @Override
+            public ParseResult parse(String s1) {
+                ParseResult result = new ParseResult("", s1);
+                for (int i = 0; i < s.length(); i++) {
+                    if (i + 1 < s.length()) {
+                        Parser parser = concat(new CharParser(s.charAt(i)), new CharParser(s.charAt(i + 1)));
+                        ParseResult  result2 = parser.parse(result.getRest());
+                        result=new ParseResult(result.getMatched()+result2.getMatched(), result2.getRest());
+
+                    } else {
+                        ParseResult result1 =new CharParser(s.charAt(i)).parse(result.getRest());
+                        result=new ParseResult(result.getMatched()+result1.getMatched(),result1.getRest());
+                    }
+                }
+                return  result;
+            }
+        };
     }
 
 
     public static void main(String[] args) {
-        Parser parser = str("hello");
+        Parser parser = str("hellod");
         System.out.println(parser.parse("hellodfads"));
     }
 }
