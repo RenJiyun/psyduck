@@ -8,4 +8,21 @@ public class ParseResult {
         this.matched = matched;
         this.rest = rest;
     }
+
+
+    public String getMatched() {
+        return matched;
+    }
+
+    public String getRest() {
+        return rest;
+    }
+
+    @Override
+    public String toString() {
+        return "ParseResult{" +
+                "matched='" + matched + '\'' +
+                ", rest='" + rest + '\'' +
+                '}';
+    }
 }
