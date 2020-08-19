@@ -32,11 +32,9 @@ public class WordCounter {
         String a = "def def gtyh jyj";
         Stream<Character> characterStream= IntStream.range(0,a.length()).mapToObj(m->a.charAt(m));
         WordCounter wordCounter = new WordCounter(0, true);
-        WordCounter wordCounter1 = characterStream.reduce(wordCounter, WordCounter::stringToCounter, WordCounter::combiner);
-//        for(Character c:a.toCharArray()){
-//            wordCounter=wordCounter.stringToCounter(c);
-//        }
-//        int counter = wordCounter.getCounter();
+        WordCounter wordCounter1 = characterStream.reduce(wordCounter, (wc, c) -> {
+            return wc.stringToCounter(c);
+        }, WordCounter::combiner);
         System.out.println("字符串得字数是：" + wordCounter1.getCounter());
 
 
