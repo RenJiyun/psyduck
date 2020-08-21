@@ -2,6 +2,7 @@ package com.eggip.temp;
 
 import io.vavr.Tuple2;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -19,11 +20,30 @@ public class SplitMerge {
     }
 
     private static List<Integer> merge(List<Integer> left, List<Integer> right) {
-        return null;
+        int i = 0, j = 0;
+        List<Integer> list = new ArrayList<>();
+        while (i < left.size() && j < right.size()) {
+            if (left.get(i) <= right.get(j)) {
+                list.add(left.get(i));
+                i++;
+            } else {
+                list.add(right.get(j));
+                j++;
+            }
+        }
+        if (i >= left.size()) {
+                list.addAll(right.subList(j, right.size()));
+        }
+        if (j >= right.size()) {
+                list.addAll(left.subList(i,left.size()));
+
+        }
+        return list;
     }
 
     private static Tuple2<List<Integer>, List<Integer>> split(List<Integer> list) {
-        return null;
+        Tuple2<List<Integer>, List<Integer>> tuple2 = new Tuple2<>(list.subList(0, list.size() / 2), list.subList(list.size() / 2, list.size()));
+        return tuple2;
     }
 
 
@@ -42,6 +62,15 @@ public class SplitMerge {
     }
 
     public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        list.add(2);
+        list.add(1);
+        list.add(4);
+        list.add(7);
+        list.add(3);
+        list.add(1);
+        List<Integer> list1=splitAndMergeV1(list);
+        System.out.println(list1);
 
     }
 }
