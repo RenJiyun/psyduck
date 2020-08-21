@@ -32,10 +32,10 @@ public class SplitMerge {
             }
         }
         if (i >= left.size()) {
-                list.addAll(right.subList(j, right.size()));
+            list.addAll(right.subList(j, right.size()));
         }
         if (j >= right.size()) {
-                list.addAll(left.subList(i,left.size()));
+            list.addAll(left.subList(i, left.size()));
 
         }
         return list;
@@ -59,6 +59,28 @@ public class SplitMerge {
     }
 
     private static void merge(List<Integer> list, int start, int middle, int end) {
+        int i = start, j = middle;
+        List<Integer> tempList = new ArrayList<>();
+        while (i < middle && j < end) {
+            if (list.get(i) > list.get(j)) {
+                tempList.add(list.get(j));
+                j++;
+            } else {
+                tempList.add(list.get(i));
+                i++;
+            }
+        }
+        if (i >= middle) {
+            tempList.addAll(list.subList(j, end));
+        }
+        if (j >= end) {
+            tempList.addAll(list.subList(i, middle));
+        }
+        int g = 0;
+        for (int k = start; k < end;k++){
+            list.set(k, tempList.get(g));
+            g++;
+        }
     }
 
     public static void main(String[] args) {
@@ -69,8 +91,9 @@ public class SplitMerge {
         list.add(7);
         list.add(3);
         list.add(1);
-        List<Integer> list1=splitAndMergeV1(list);
-        System.out.println(list1);
+        list.add(9);
+        splitAndMergeV2(list, 0, list.size());
+        System.out.println(list);
 
     }
 }
