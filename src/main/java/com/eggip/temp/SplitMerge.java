@@ -1,5 +1,7 @@
 package com.eggip.temp;
 
+import io.vavr.Tuple;
+import io.vavr.Tuple1;
 import io.vavr.Tuple2;
 
 import java.util.ArrayList;
@@ -81,6 +83,7 @@ public class SplitMerge {
             list.set(k, tempList.get(g));
             g++;
         }
+
     }
 
     public static void main(String[] args) {
