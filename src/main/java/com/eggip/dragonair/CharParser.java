@@ -10,11 +10,12 @@ public class CharParser implements Parser<Character> {
 
     @Override
     public ParseResult<Character> parse(String s) {
-        if (s == null || s.length() == 0 || s.toCharArray()[0] != c) {
+        /*if (s == null || s.length() == 0 || s.toCharArray()[0] != c) {
             return new ParseResult("", s);
         } else {
             return new ParseResult(String.valueOf(c), s.substring(1));
-        }
+        }*/
+        return null;
     }
 
 
