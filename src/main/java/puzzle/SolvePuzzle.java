@@ -5,6 +5,8 @@ import ch.qos.logback.classic.sift.AppenderFactoryUsingJoran;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 public class SolvePuzzle {
     public List<Position> solution(Puzzle puzzle, Position position) {
@@ -26,7 +28,5 @@ public class SolvePuzzle {
             }
             return new ArrayList<>();
         }
-
     }
-
 }
