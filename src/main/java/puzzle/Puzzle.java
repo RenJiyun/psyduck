@@ -1,10 +1,13 @@
 package puzzle;
 
-public class Puzzle {
 
-public Node search(){
-    return null;
-}
+import java.util.List;
 
+public interface Puzzle {
+    Position start();
+
+    List<Position> moveList(Position currentPosition);
+
+    boolean end(Position currentPosition);
 
 }
