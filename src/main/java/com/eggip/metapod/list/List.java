@@ -10,7 +10,7 @@ public class List<E> {
         this.tail = tail;
     }
     
-    public static final List<?> nil = new List<>(null, null);
+    public static final List<Integer> nil = new List<>(null, null);
 
 
     @Override 

@@ -12,6 +12,7 @@ import java.util.stream.StreamSupport;
  * 为什么 WordCounterSpliterator《String》不行
  */
 public class WordCounterSpliterator implements Spliterator<Character> {
+
     private int currentWordCounter;
     private final String word;
 
@@ -35,7 +36,7 @@ public class WordCounterSpliterator implements Spliterator<Character> {
             int splitPos = (word.length() + currentWordCounter) / 2;
             for (int pos = splitPos; pos < word.length(); pos++) {
                 if (Character.isWhitespace(word.charAt(pos))) {
-                   Spliterator<Character> spliterator=new WordCounterSpliterator(word.substring(currentWordCounter,pos));
+                    Spliterator<Character> spliterator = new WordCounterSpliterator(word.substring(currentWordCounter, pos));
                     currentWordCounter = pos;
                     return spliterator;
                 }
@@ -62,12 +63,12 @@ public class WordCounterSpliterator implements Spliterator<Character> {
                 '}';
     }
 
-    public static void main(String[] args){
-        String word="adffgtggymim rj g g grisjaelo mjoeb jeon joeji jndeil jieng gj jo a l fmf hrg hod dms lep je o eo3m d p d dog";
-        Stream<Character> characterStream= IntStream.range(0,word.length()).mapToObj(word::charAt);
-        Spliterator<Character> wordCounterSpliterator=new WordCounterSpliterator(word);
-       Stream<Character> stream= StreamSupport.stream(wordCounterSpliterator,true);
-        LinkedList linkedList=new LinkedList();
+    public static void main(String[] args) {
+        String word = "adffgtggymim rj g g grisjaelo mjoeb jeon joeji jndeil jieng gj jo a l fmf hrg hod dms lep je o eo3m d p d dog";
+        Stream<Character> characterStream = IntStream.range(0, word.length()).mapToObj(word::charAt);
+        Spliterator<Character> wordCounterSpliterator = new WordCounterSpliterator(word);
+        Stream<Character> stream = StreamSupport.stream(wordCounterSpliterator, true);
+        LinkedList linkedList = new LinkedList();
 
     }
 }
