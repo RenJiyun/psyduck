@@ -1,5 +1,7 @@
 package puzzle;
 
+import ch.qos.logback.classic.sift.AppenderFactoryUsingJoran;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,17 +11,20 @@ public class SolvePuzzle {
         if (puzzle.end(position)) {
             return Arrays.asList(position);
         } else {
-            List<Position> list=new ArrayList<>();
-            List<Position> moveList = puzzle.moveList(position);
-            for (Position position1 : moveList) {
-                list=solution(puzzle,position1);
-               if (list==null){
-                   continue;
-               }else {
-                   list.add(0,position);
-               }
+            List<Position> nextPositions = puzzle.moveList(position);
+            if (nextPositions.isEmpty()) {
+                return new ArrayList<>();
             }
-            return list;
+
+            for (Position nextPosition : nextPositions) {
+                List<Position> temp = solution(puzzle, nextPosition);
+                if (temp.isEmpty()) {
+                    continue;
+                }
+                temp.add(0, position);
+                return temp;
+            }
+            return new ArrayList<>();
         }
 
     }
