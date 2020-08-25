@@ -9,7 +9,8 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class SolvePuzzle {
-    public List<Position> solution(Puzzle puzzle, Position position) {
+
+    public List<Position> solution(Puzzle puzzle, Position position, List<Position> seeDList) {
         if (puzzle.end(position)) {
             return Arrays.asList(position);
         } else {
@@ -17,14 +18,16 @@ public class SolvePuzzle {
             if (nextPositions.isEmpty()) {
                 return new ArrayList<>();
             }
-
-            for (Position nextPosition : nextPositions) {
-                List<Position> temp = solution(puzzle, nextPosition);
-                if (temp.isEmpty()) {
-                    continue;
+            if (!seeDList.contains(position)) {
+                seeDList.add(position);
+                for (Position nextPosition : nextPositions) {
+                    List<Position> temp = solution(puzzle, nextPosition, seeDList);
+                    if (temp.isEmpty()) {
+                        continue;
+                    }
+                    temp.add(0, position);
+                    return temp;
                 }
-                temp.add(0, position);
-                return temp;
             }
             return new ArrayList<>();
         }
