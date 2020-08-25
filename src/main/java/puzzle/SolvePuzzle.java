@@ -1,16 +1,13 @@
 package puzzle;
 
-import ch.qos.logback.classic.sift.AppenderFactoryUsingJoran;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
-import java.util.function.Predicate;
+import java.util.Set;
 
 public class SolvePuzzle {
 
-    public List<Position> solution(Puzzle puzzle, Position position, List<Position> seeDList) {
+    public List<Position> solution(Puzzle puzzle, Position position, Set<Position> seeDList) {
         if (puzzle.end(position)) {
             return Arrays.asList(position);
         } else {
