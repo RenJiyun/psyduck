@@ -9,12 +9,11 @@ import java.util.concurrent.*;
 public class ConcurrentSolvePuzzle {
     private ExecutorService executorService = Executors.newCachedThreadPool();
     ConcurrentHashMap<Position, Boolean> seedList = new ConcurrentHashMap<>();
-    CompletionService<List<Position>> completableFuture = new ExecutorCompletionService<>(executorService);
+    CompletionService<List<Position>> completionService = new ExecutorCompletionService<>(executorService);
 
     public class Solver implements Callable<List<Position>> {
         private Puzzle puzzle;
         public Position position;
-        List<Position> list = new ArrayList<>();
 
         public Solver(Puzzle puzzle, Position position) {
             this.puzzle = puzzle;
@@ -24,20 +23,20 @@ public class ConcurrentSolvePuzzle {
         @Override
         public List<Position> call() throws Exception {
             if (puzzle.end(position)) {
-                list.add(position);
-                return list;
+                List<Position> positions = new ArrayList<>();
+                positions.add(position);
+                return positions;
             } else {
                 List<Position> nextPositions = puzzle.moveList(position);
                 if (!seedList.putIfAbsent(position, true)) {
                     for (Position nextPosition : nextPositions) {
-                        completableFuture.submit(new Solver(puzzle, nextPosition));
+                        completionService.submit(new Solver(puzzle, nextPosition));
                     }
                     for (int i = 0; i < nextPositions.size(); i++) {
-                        Future<List<Position>> a = completableFuture.take();
+                        Future<List<Position>> a = completionService.take();
                         if (!a.get().isEmpty()) {
-                            list = a.get();
-                            list.add(0, position);
-                            return list;
+                            a.get().add(0, position);
+                            return a.get();
                         }
                     }
                 }
