@@ -1,15 +1,14 @@
 package puzzle;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class SolvePuzzle {
 
-    public List<Position> solution(Puzzle puzzle, Position position, Set<Position> seeDList) {
+    public static List<Position> solution(Puzzle puzzle, Position position, Set<Position> seeDList) {
         if (puzzle.end(position)) {
-            return Arrays.asList(position);
+            List<Position> temp = new ArrayList<>();
+            temp.add(position);
+            return temp;
         } else {
             List<Position> nextPositions = puzzle.moveList(position);
             if (nextPositions.isEmpty()) {
@@ -28,5 +27,10 @@ public class SolvePuzzle {
             }
             return new ArrayList<>();
         }
+    }
+
+
+    public static void main(String[] args) {
+        System.out.println(solution(new EightQueen(), new Position(), new HashSet<>()));
     }
 }
