@@ -7,11 +7,11 @@ import java.util.Set;
 import java.util.concurrent.*;
 
 public class ConcurrentSolvePuzzle {
-    private ExecutorService executorService = Executors.newCachedThreadPool();
-    ConcurrentHashMap<Position, Boolean> seedList = new ConcurrentHashMap<>();
-    CompletionService<List<Position>> completionService = new ExecutorCompletionService<>(executorService);
+    private static ExecutorService executorService = Executors.newCachedThreadPool();
+    static ConcurrentHashMap<Position, Boolean> seedList = new ConcurrentHashMap<>();
+    static CompletionService<List<Position>> completionService = new ExecutorCompletionService<>(executorService);
 
-    public class Solver implements Callable<List<Position>> {
+    public static class Solver implements Callable<List<Position>> {
         private Puzzle puzzle;
         public Position position;
 
@@ -28,7 +28,7 @@ public class ConcurrentSolvePuzzle {
                 return positions;
             } else {
                 List<Position> nextPositions = puzzle.moveList(position);
-                if (!seedList.putIfAbsent(position, true)) {
+                if (seedList.putIfAbsent(position, true) == null) {
                     for (Position nextPosition : nextPositions) {
                         completionService.submit(new Solver(puzzle, nextPosition));
                     }
@@ -46,7 +46,8 @@ public class ConcurrentSolvePuzzle {
     }
 
 
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws Exception {
+        Solver solver = new Solver(new EightQueen(), new Position());
+        System.out.println(solver.call());
     }
 }
