@@ -1,11 +1,30 @@
 package com.eggip.temp;
 
 public class Demo {
-    public Demo next;
+
+    private static int[] cost = {2, 3, 7, 4, 5, 8, 10};
+
+    public static int f(int n) {
+        if (n < 2 || n > cost.length ) {
+            throw new IllegalArgumentException();
+        }
+
+        return g(n);
+
+    }
+
+    public static int g(int n) {
+        if (n < 2) {
+            return 0;
+        }
+        if (n == 2) {
+            return Integer.min(cost[0], cost[1]);
+        } else {
+            return Integer.min(g(n - 1) + cost[n - 1], g(n - 2) + cost[n - 2]);
+        }
+    }
 
     public static void main(String[] args) {
-        Demo a = new Demo();
-        a.next = new Demo();
-        a.next = null;
+        System.out.println(f(4));
     }
 }
