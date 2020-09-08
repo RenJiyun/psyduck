@@ -19,8 +19,8 @@ public class NumberPuzzle implements Puzzle {
         Tuple3<Integer, Integer, Integer> t3 = findEarlyBlank(currentPosition);
         removeXSampleNumber(currentPosition, t3._1, numbers);
         removeYSampleNumber(currentPosition, t3._2, numbers);
-        removeNineCellSampleNumber();
-        return asMoveList(currentPosition, t3,numbers);
+        removeNineCellSampleNumber(currentPosition, t3._1, t3._2, numbers);
+        return asMoveList(currentPosition, t3, numbers);
     }
 
     private Tuple3<Integer, Integer, Integer> findEarlyBlank(Position currentPosition) {
@@ -34,23 +34,24 @@ public class NumberPuzzle implements Puzzle {
         return null;
     }
 
-    private void removeYSampleNumber(Position currentPosition, Integer integer, List<Integer> numbers) {
+    private void removeYSampleNumber(Position currentPosition, Integer y, List<Integer> numbers) {
         for (Tuple3<Integer, Integer, Integer> t : currentPosition.getNumberPosition()) {
-            if (t._2 == integer) {
+            if (t._2 == y) {
                 numbers.remove(t._3);
             }
         }
     }
 
-    private void removeXSampleNumber(Position currentPosition, Integer integer, List<Integer> numbers) {
+    private void removeXSampleNumber(Position currentPosition, Integer x, List<Integer> numbers) {
         for (Tuple3<Integer, Integer, Integer> t : currentPosition.getNumberPosition()) {
-            if (t._1 == integer) {
+            if (t._1 == x) {
                 numbers.remove(t._3);
             }
         }
     }
 
-    private void removeNineCellSampleNumber() {
+    private void removeNineCellSampleNumber(Position currentPosition, Integer x, Integer y, List<Integer> numbers) {
+
     }
 
     private List<Position> asMoveList(Position currentPosition, Tuple3<Integer, Integer, Integer> t, List<Integer> numbers) {
