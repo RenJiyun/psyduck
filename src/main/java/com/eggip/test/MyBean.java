@@ -16,11 +16,23 @@ public class MyBean {
         myBean1.socket = "aa";
         getBean(myBean1);
         System.out.println(myBean1.socket);
+
+
+        System.out.println("as" == "as");
+
+        String ss1 = "as";
+        String ss2 = "as";
+        System.out.println(ss1 == ss2);
+
+        String ss3 = new String("as");
+        String ss4 = new String("as");
+        System.out.println(ss3 == ss4);
     }
 
     private static String  setValue(String s2) {
        return s2 = "ttt";
     }
+
     private static int setValue1(int s2) {
         s2 = 3;
         return s2;
