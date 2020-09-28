@@ -1,4 +1,4 @@
-//package puzzle;
+//package com.eggip.puzzle;
 //
 //import io.vavr.Tuple;
 //import io.vavr.Tuple2;

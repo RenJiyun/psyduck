@@ -1,23 +1,23 @@
-//package puzzle;
+//package com.eggip.puzzle;
 //
 //import java.util.*;
 //
 //public class SolvePuzzle {
 //
-//    public static List<Position> solution(Puzzle puzzle, Position position, Set<Position> seeDList) {
-//        if (puzzle.end(position)) {
+//    public static List<Position> solution(Puzzle com.eggip.puzzle, Position position, Set<Position> seeDList) {
+//        if (com.eggip.puzzle.end(position)) {
 //            List<Position> temp = new ArrayList<>();
 //            temp.add(position);
 //            return temp;
 //        } else {
-//            List<Position> nextPositions = puzzle.moveList(position);
+//            List<Position> nextPositions = com.eggip.puzzle.moveList(position);
 //            if (nextPositions.isEmpty()) {
 //                return new ArrayList<>();
 //            }
 //            if (!seeDList.contains(position)) {
 //                seeDList.add(position);
 //                for (Position nextPosition : nextPositions) {
-//                    List<Position> temp = solution(puzzle, nextPosition, seeDList);
+//                    List<Position> temp = solution(com.eggip.puzzle, nextPosition, seeDList);
 //                    if (temp.isEmpty()) {
 //                        continue;
 //                    }
