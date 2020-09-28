@@ -3,8 +3,8 @@ package com.eggip.test;
 import java.net.Socket;
 
 public class MyBean {
-    public static String socket;
-
+    public  String socket;
+    public static int a1;
     public static void main(String[] args) {
         int a=1;
         setValue1(a);

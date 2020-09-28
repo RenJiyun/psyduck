@@ -7,7 +7,7 @@ public class TestPerson {
     public static RestTemplate restTemplate=new RestTemplate();
 
     public static  void  main(String[] args){
-        String url= "192.168.43.221/person/a";
-        restTemplate.getForObject(url,null);
+        String url= "http://192.168.43.221:/person/a";
+        restTemplate.getForObject(url,Object.class);
     }
 }
