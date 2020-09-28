@@ -1,4 +1,4 @@
-//package puzzle;
+//package com.eggip.puzzle;
 //
 //import com.sun.org.apache.bcel.internal.generic.ACONST_NULL;
 //import io.vavr.Tuple;

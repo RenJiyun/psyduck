@@ -1,4 +1,4 @@
-//package puzzle;
+//package com.eggip.puzzle;
 //
 //public class Move {
 //    private Position position;
