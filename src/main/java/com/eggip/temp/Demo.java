@@ -1,5 +1,7 @@
 package com.eggip.temp;
 
+import javax.crypto.spec.PSource;
+
 public class Demo {
 
     private static int[] cost = {2, 3, 7, 4, 5, 8, 10};
@@ -25,6 +27,6 @@ public class Demo {
     }
 
     public static void main(String[] args) {
-        System.out.println(f(4));
+
     }
 }

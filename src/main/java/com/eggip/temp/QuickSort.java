@@ -5,12 +5,17 @@ import io.vavr.Tuple2;
 import io.vavr.Tuple3;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * 快排
  */
 public class QuickSort {
+    Set set=new HashSet();
+
+
     public static List<Integer> quickSortV1(List<Integer> list) {
         if (list.size() == 1 || list.size() == 0) {
             return list;

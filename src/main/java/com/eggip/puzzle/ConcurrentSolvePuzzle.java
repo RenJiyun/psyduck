@@ -1,4 +1,4 @@
-//package puzzle;
+//package com.eggip.puzzle;
 //
 //import java.util.ArrayList;
 //import java.util.Arrays;
@@ -12,25 +12,25 @@
 //    static CompletionService<List<Position>> completionService = new ExecutorCompletionService<>(executorService);
 //
 //    public static class Solver implements Callable<List<Position>> {
-//        private Puzzle puzzle;
+//        private Puzzle com.eggip.puzzle;
 //        public Position position;
 //
-//        public Solver(Puzzle puzzle, Position position) {
-//            this.puzzle = puzzle;
+//        public Solver(Puzzle com.eggip.puzzle, Position position) {
+//            this.com.eggip.puzzle = com.eggip.puzzle;
 //            this.position = position;
 //        }
 //
 //        @Override
 //        public List<Position> call() throws Exception {
-//            if (puzzle.end(position)) {
+//            if (com.eggip.puzzle.end(position)) {
 //                List<Position> positions = new ArrayList<>();
 //                positions.add(position);
 //                return positions;
 //            } else {
-//                List<Position> nextPositions = puzzle.moveList(position);
+//                List<Position> nextPositions = com.eggip.puzzle.moveList(position);
 //                if (seedList.putIfAbsent(position, true) == null) {
 //                    for (Position nextPosition : nextPositions) {
-//                        completionService.submit(new Solver(puzzle, nextPosition));
+//                        completionService.submit(new Solver(com.eggip.puzzle, nextPosition));
 //                    }
 //                    for (int i = 0; i < nextPositions.size(); i++) {
 //                        Future<List<Position>> a = completionService.take();

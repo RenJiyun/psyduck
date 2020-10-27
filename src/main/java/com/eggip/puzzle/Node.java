@@ -1,4 +1,4 @@
-//package puzzle;
+//package com.eggip.puzzle;
 //
 //import java.util.List;
 //
